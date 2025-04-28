@@ -136,6 +136,15 @@ document.querySelector('.reset-btn').addEventListener('click', () => {
     }
 });
 
+// Reset points
+document.querySelector('.reset-points-btn').addEventListener('click', () => {
+    if (confirm('Are you sure you want to reset all points? This will not affect your history.')) {
+        state.points = { yellow: 1, green: 0, blue: 0, purple: 0, red: 0, black: 0 };
+        saveState();
+        updateUI();
+    }
+});
+
 // Helper functions
 function getNextLevel(level) {
     const levels = Object.keys(LEVELS);

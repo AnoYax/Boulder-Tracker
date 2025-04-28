@@ -148,6 +148,18 @@ h1 {
 .outcome-btn.within5 { background: var(--yellow); color: #333; }
 .outcome-btn.failed { background: var(--red); }
 
+.reset-points-btn {
+    background: var(--red);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px;
+    margin-top: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(249, 217, 73, 0.2);
+}
+
 /* Challenge Section */
 .challenge-section {
     margin-top: 24px;
