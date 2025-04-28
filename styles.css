@@ -1,0 +1,247 @@
+/* Base styles */
+:root {
+    --yellow: #F9D949;
+    --green: #36AE7C;
+    --blue: #5271FF;
+    --purple: #9C4DF4;
+    --red: #EB5353;
+    --black: #222222;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #F5F7FA;
+}
+
+.app {
+    max-width: 600px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navigation */
+.nav {
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 12px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 8px;
+}
+
+.nav-btn.active {
+    color: var(--blue);
+}
+
+/* Content */
+.content {
+    flex: 1;
+    padding: 20px;
+    padding-bottom: 80px;
+}
+
+.tab {
+    display: none;
+}
+
+.tab.active {
+    display: block;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Level Cards */
+.levels {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.level-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.level-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+.level-card[data-level="yellow"] .level-dot { background: var(--yellow); }
+.level-card[data-level="green"] .level-dot { background: var(--green); }
+.level-card[data-level="blue"] .level-dot { background: var(--blue); }
+.level-card[data-level="purple"] .level-dot { background: var(--purple); }
+.level-card[data-level="red"] .level-dot { background: var(--red); }
+.level-card[data-level="black"] .level-dot { background: var(--black); }
+
+.level-info h3 {
+    font-size: 16px;
+    color: #333;
+}
+
+.level-info p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Buttons */
+.generate-btn {
+    background: var(--blue);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(82, 113, 255, 0.2);
+}
+
+.outcome-btn {
+    width: 100%;
+    padding: 16px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+}
+
+.outcome-btn.flash { background: var(--green); }
+.outcome-btn.within2 { background: var(--blue); }
+.outcome-btn.within5 { background: var(--yellow); color: #333; }
+.outcome-btn.failed { background: var(--red); }
+
+/* Challenge Section */
+.challenge-section {
+    margin-top: 24px;
+}
+
+.challenge-section.hidden {
+    display: none;
+}
+
+.current-level {
+    background: var(--blue);
+    color: white;
+    padding: 16px;
+    border-radius: 12px;
+    margin: 16px 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+.notes-input {
+    width: 100%;
+    height: 100px;
+    margin-top: 16px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    resize: none;
+    font-family: inherit;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stat-value {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--blue);
+    margin-top: 8px;
+}
+
+/* History List */
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.history-item {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Settings */
+.settings-section {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reset-btn {
+    background: var(--red);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    margin: 16px 0;
+    cursor: pointer;
+}
+
+.warning-text {
+    color: var(--red);
+    font-size: 14px;
+}
+
+.version {
+    text-align: center;
+    color: #999;
+    font-size: 12px;
+    margin-top: 40px;
+}
