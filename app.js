@@ -192,27 +192,46 @@ function updateUI() {
             </div>
         `).join('');
     
-    // Update stats
-    const totalAttempts = state.history.length;
-    const successfulAttempts = state.history.filter(a => a.outcome !== 'failed').length;
-    const successRate = totalAttempts > 0 ? Math.round((successfulAttempts / totalAttempts) * 100) : 0;
-    const flashes = state.history.filter(a => a.outcome === 'flash').length;
-    
-    document.querySelector('.stat-value:nth-child(2)').textContent = totalAttempts;
-    document.querySelector('.stat-value:nth-child(4)').textContent = `${successRate}%`;
-    document.querySelector('.stat-value:nth-child(6)').textContent = flashes;
-    
-    // Find most common level
-    if (totalAttempts > 0) {
+    // Update stats using IDs
+    const totalAttemptsElem = document.getElementById('total-attempts');
+    const successRateElem = document.getElementById('success-rate');
+    const flashesElem = document.getElementById('flashes');
+    const mostCommonLevelElem = document.getElementById('most-common-level');
+
+    if (totalAttemptsElem) totalAttemptsElem.innerHTML = `
+                                                <h3>Total Attempts</h3>
+                                                <p class="stat-value">`+state.history.length+`</p>
+                                                `;
+    if (successRateElem) {
+        const successfulAttempts = state.history.filter(a => a.outcome !== 'failed').length;
+        const successRate = state.history.length > 0 ? Math.round((successfulAttempts / state.history.length) * 100) : 0;
+        successRateElem.innerHTML = `
+                        <h3>Success Rate</h3>
+                        <p class="stat-value">`+successRate+`%</p>
+                        `;
+    }
+    if (flashesElem) {
+        const flashes = state.history.filter(a => a.outcome === 'flash').length;
+        flashesElem.innerHTML = `
+                        <h3>Flashes</h3>
+                        <p class="stat-value">`+flashes+`</p>
+                        `;
+    }
+    if (mostCommonLevelElem && state.history.length > 0) {
         const levelCounts = state.history.reduce((acc, attempt) => {
             acc[attempt.level] = (acc[attempt.level] || 0) + 1;
             return acc;
         }, {});
         const mostCommonLevel = Object.entries(levelCounts)
             .sort((a, b) => b[1] - a[1])[0][0];
-        document.querySelector('.stat-value:nth-child(8)').textContent = LEVELS[mostCommonLevel].name;
+        mostCommonLevelElem.innerHTML = `
+                        <h3>Most Common Level</h3>
+                        <p class="stat-value">`+LEVELS[mostCommonLevel].name+`</p>
+                        `;
     }
 }
 
 // Initialize
-loadState();
+document.addEventListener('DOMContentLoaded', () => {
+    loadState();
+});
